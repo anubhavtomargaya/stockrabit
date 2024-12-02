@@ -61,7 +61,7 @@ def save_prompt():
         prompt_data = PromptData.from_dict(data)
         
         # Validate the prompt data
-        if not prompt_data.validate():
+        if not data.validate():
             return jsonify({"error": "Invalid prompt data"}), 400
             
         user_id = "test_user"  # In practice, get this from your auth system
@@ -87,11 +87,11 @@ def get_prompt(name):
     try:
         version = request.args.get('version', type=int)
         prompt_dict = prompt_manager.get_prompt(name, version=version)
-        
+        print("prompt dic", prompt_dict)
         if prompt_dict:
             # Convert dictionary to PromptData object
-            prompt = PromptData.from_dict(prompt_dict)
-            return jsonify(prompt.to_dict())
+            # prompt = PromptData.from_dict(prompt_dict)
+            return jsonify(prompt_dict)
             
         return jsonify({"error": "Prompt not found"}), 404
     except Exception as e:

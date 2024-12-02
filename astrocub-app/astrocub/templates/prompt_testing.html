@@ -109,7 +109,7 @@
         // Load prompt data
         async function loadPrompt(promptName) {
             try {
-                const response = await fetch(`/api/prompt/${promptName}`);
+                const response = await fetch(`/genetl/api/prompt/${promptName}`);
                 const promptData = await response.json();
                 
                 promptEditor.setValue(JSON.stringify(promptData, null, 2));
@@ -127,7 +127,7 @@
                 promptData.category = document.getElementById('promptCategory').value;
                 promptData.status = document.getElementById('promptStatus').value;
                 
-                const response = await fetch('/api/prompt', {
+                const response = await fetch('/genetl/api/prompt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
